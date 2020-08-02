@@ -1,0 +1,85 @@
+/***** transition *****/
+
+@mixin transition($transitions...) {
+	$unfoldedTransitions: ();
+	@each $transition in $transitions {
+		$unfoldedTransitions: append($unfoldedTransitions, unfoldTransition($transition), comma);
+	}
+  
+  	-moz-transition: $unfoldedTransitions;
+	-webkit-transition: $unfoldedTransitions;
+	-ms-transition: $unfoldedTransitions;
+	transition: $unfoldedTransitions;
+}
+
+@function unfoldTransition ($transition) {
+  // Default values
+  $property: all;
+  $duration: .2s;
+  $easing: null; // Browser default is ease, which is what we want
+  $delay: null; // Browser default is 0, which is what we want
+  $defaultProperties: ($property, $duration, $easing, $delay);
+
+  // Grab transition properties if they exist
+  $unfoldedTransition: ();
+  @for $i from 1 through length($defaultProperties) {
+    $p: null;
+    @if $i <= length($transition) {
+      $p: nth($transition, $i)
+    } @else {
+      $p: nth($defaultProperties, $i)
+    }
+    $unfoldedTransition: append($unfoldedTransition, $p);
+  }
+
+  @return $unfoldedTransition;
+}
+
+
+/***** transform *****/
+
+
+@mixin transform($transform) {
+  -moz-transform: $transform;
+  -webkit-transform: $transform;
+  -ms-transform: $transform;
+  transform: $transform;
+}
+
+@mixin noappearance() {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+}
+
+@mixin gradient($color) {
+  background: $color;
+  background: -moz-linear-gradient(top,  $color 0%, rgba($color, 0.8) 100%);
+  background: -webkit-linear-gradient(top,  $color 0%, rgba($color, 0.8) 100%);
+  background: linear-gradient(to bottom,  $color 0%, rgba($color, 0.8) 100%);
+}
+
+
+@mixin placeholder ($color) {
+
+  ::-webkit-input-placeholder {
+    color: $color !important;
+    opacity: 1.0;
+  }
+
+  :-moz-placeholder {
+    color: $color !important;
+    opacity: 1.0;
+  }
+
+  ::-moz-placeholder {
+    color: $color !important;
+    opacity: 1.0;
+  }
+
+  :-ms-input-placeholder {
+    color: $color !important;
+    opacity: 1.0;
+  }
+}
