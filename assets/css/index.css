@@ -761,10 +761,84 @@ label {
   }
 }
 
+/* Container for flexboxes */
+.row {
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;
+  /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Chrome */
+  display: flex;
+  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+}
+@media (max-width: 600px) {
+  .row {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-direction: normal;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+/* Create three equal columns that sits next to each other */
+.column {
+  -webkit-box: 1;
+  -moz-box: 1;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  padding: 10px;
+}
+.column.first h5 {
+  font-family: Merriweather, serif;
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 53px;
+  letter-spacing: 0.02em;
+  width: 230px;
+  margin: 0;
+  text-align: left;
+}
+.column.first h5 em {
+  color: #f35597;
+}
+.column.first li {
+  text-align: left;
+}
+.column.first li:last-of-type {
+  margin-top: 50px;
+}
+.column.first li a {
+  padding-right: 30px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.column.first li a:hover {
+  opacity: 0.7;
+}
+.column.first li a i {
+  font-size: 24px;
+}
+.column.second ul li, .column.third ul li {
+  text-align: left;
+}
+.column.second ul li a, .column.third ul li a {
+  cursor: pointer;
+}
+.column.second ul li a:hover, .column.third ul li a:hover {
+  text-decoration: underline;
+}
+
 /* Footer */
 #footer {
-  padding: 6em 0;
-  background: #574b90;
+  padding: 6em 0 0.5em;
+  background: #242526;
   color: #ffffff;
   text-align: center;
 }
@@ -792,12 +866,12 @@ label {
 }
 @media screen and (max-width: 980px) {
   #footer {
-    padding: 4em 0;
+    padding: 4em 0 0.5em;
   }
 }
 @media screen and (max-width: 768px) {
   #footer {
-    padding: 3em 0;
+    padding: 3em 0 0.5em;
   }
 }
 

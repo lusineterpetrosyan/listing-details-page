@@ -776,12 +776,82 @@ label {
 }
 
 
+/* Container for flexboxes */
+.row {
+  @include flex-box();
+
+  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+	@media (max-width: 600px) {
+	    @include flex-direction(column);
+	}
+}
+
+/* Create three equal columns that sits next to each other */
+.column {
+  @include flex(1);
+  padding: 10px;
+
+  &.first {
+  	h5 {
+	    font-family: Merriweather,serif;
+	    font-weight: 700;
+	    font-size: 42px;
+	    line-height: 53px;
+	    letter-spacing: .02em;
+	    width: 230px;
+	    margin: 0;
+	    text-align: left;
+
+	    em {
+	    	color: #f35597;
+	    }
+  	}
+
+  	li {
+  		text-align: left;
+
+  		&:last-of-type {
+  			margin-top: 50px;
+  		}
+
+  		a {
+  			padding-right: 30px;
+		    overflow: hidden;
+    		cursor: pointer;
+
+    		&:hover {
+    			opacity: .7;
+    		}
+
+	  		i {
+	  			font-size: 24px;
+	  		}
+	  	}
+	  }
+  }
+
+  &.second, &.third {
+  	ul {
+  		li {
+  			text-align: left;
+  			a {
+  				cursor: pointer;
+
+  				&:hover {
+  					text-decoration: underline;
+  				}
+  			}
+  		}
+  	}
+  }
+}
+
 
 /* Footer */
 
 #footer {
-	padding: 6em 0;
-	background: $primary-color;
+	padding: 6em 0 .5em;
+	background: #242526;
 	color: $white;
 	text-align: center;
 
@@ -815,11 +885,11 @@ label {
 
 
 	@media screen and (max-width: $breakpoint980) {
-		padding: 4em 0;
+		padding: 4em 0 .5em;
 	}
 
 	@media screen and (max-width: $breakpoint-tablet-p) {
-		padding: 3em 0;
+		padding: 3em 0 .5em;
 	}
 }
 
